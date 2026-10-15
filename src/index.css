@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ *
+ * Design tokens - sampled from the reference theme
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-navy: #243344;
+  --color-navy-900: #1b2735;
+  --color-gold: #f4c03b;
+  --color-gold-soft: #fdf5e1;
+  --color-ink: #8b8b8b;
+  --color-mist: #f1f1f1;
+
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  :root {
+    --header-shift: 0px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-body text-[16px] leading-[2] text-ink antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display leading-tight text-navy;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-gold text-navy;
+  }
+
+  /* Visible focus for keyboard users only */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1360px] px-5 sm:px-8;
+  }
+
+  /* Section eyebrow + title block with the oversized watermark word */
+  .watermark {
+    @apply pointer-events-none absolute left-0 right-0 select-none font-display font-bold uppercase leading-none text-gold/15;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Hero slider entrance choreography
+ * ------------------------------------------------------------------ */
+@keyframes hero-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-panel-in {
+  from {
+    transform: skewX(-33deg) translateX(60vw);
+  }
+  to {
+    transform: skewX(-33deg) translateX(0);
+  }
+}
+
+@keyframes hero-model-in {
+  from {
+    opacity: 0;
+    transform: translateX(90px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-in {
+  animation: hero-slide-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-d1 {
+  animation-delay: 0.35s;
+}
+.hero-d2 {
+  animation-delay: 0.05s;
+}
+.hero-d3 {
+  animation-delay: 0.35s;
+}
+.hero-d4 {
+  animation-delay: 0.6s;
+}
+
+.hero-panel {
+  animation: hero-panel-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-model {
+  animation: hero-model-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.35s;
+}
+
+@layer utilities {
+  .fx-reveal {
+    opacity: 0;
+    transform: translateY(42px);
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .fx-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fx-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
