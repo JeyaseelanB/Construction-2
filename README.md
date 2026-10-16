@@ -131,6 +131,9 @@ npm run lint      # oxlint
 
 ## Environment configuration
 
+> A standalone, more detailed version of this section and the API documentation below
+> is available in [ENVIRONMENT-AND-API.md](ENVIRONMENT-AND-API.md).
+
 The site renders with **no environment variables** — every value needed to build and run
 is committed. One optional variable exists:
 
