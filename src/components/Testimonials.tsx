@@ -33,7 +33,7 @@ export function Testimonials() {
         />
 
         <div
-          className="fx-reveal relative mt-14 lg:mt-24"
+          className="fx-reveal relative mt-[120px] lg:mt-24"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -54,36 +54,32 @@ export function Testimonials() {
           aria-label="Customer testimonials"
           tabIndex={0}
         >
-          <div className="relative lg:ml-[110px]">
+          <div className="relative w-full lg:ml-[100px] lg:w-auto lg:max-w-[1120px]">
             {TESTIMONIALS.map((t, i) => (
               <article
                 key={t.author}
                 aria-hidden={index !== i}
-                className={`bg-white px-6 py-10 shadow-[0_20px_70px_rgba(36,51,68,0.13)] transition-opacity duration-500 sm:px-14 sm:py-16 lg:pl-[150px] lg:pr-20 ${
+                className={`bg-white p-[30px] shadow-[0_10px_50px_rgba(36,51,68,0.15)] transition-opacity duration-500 sm:p-[50px] lg:px-[150px] lg:py-[75px] ${
                   index === i
                     ? 'relative z-[1] opacity-100'
                     : 'pointer-events-none absolute inset-0 opacity-0'
                 }`}
               >
-                {/* avatar with the offset gold frame */}
-                <div className="relative mb-7 lg:absolute lg:-left-[95px] lg:top-14 lg:mb-0">
-                  <span
-                    aria-hidden="true"
-                    className="absolute -bottom-4 -left-4 h-full w-full border-[6px] border-gold"
-                  />
+                {/* reference accent is a solid offset square: box-shadow -15px 15px 0 0 #f4c03b */}
+                <div className="relative mx-auto -mt-[100px] mb-[75px] w-fit lg:absolute lg:-left-[95px] lg:-top-[50px] lg:mx-0 lg:mb-0 lg:mt-0">
                   <img
                     src={t.avatar}
                     alt=""
                     aria-hidden="true"
-                    width={190}
-                    height={190}
+                    width={200}
+                    height={200}
                     loading="lazy"
-                    className="relative h-[110px] w-[110px] object-cover shadow-[0_15px_40px_rgba(36,51,68,0.15)] lg:h-[190px] lg:w-[185px]"
+                    className="relative h-[150px] w-[150px] object-cover shadow-[-15px_15px_0_0_var(--color-gold),0_15px_40px_rgba(36,51,68,0.15)] md:h-[200px] md:w-[200px]"
                   />
                 </div>
 
                 <blockquote>
-                  <p className="text-[16px] leading-[1.9] text-navy sm:text-[19px] sm:leading-[2.1]">
+                  <p className="text-[16px] leading-[1.9] text-navy sm:text-[20px] sm:leading-[2] lg:text-[24px] lg:leading-[1.67]">
                     {t.quote}
                   </p>
                   <footer className="mt-7 font-body text-[15px] italic text-ink">{t.author}</footer>

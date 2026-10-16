@@ -7,7 +7,7 @@ export function Footer() {
       <div className="bg-navy pb-16 pt-14 lg:pb-[70px] lg:pt-[60px]">
         <div className="shell text-center">
           <img
-            src="/images/footer-logo-construction.png"
+            src="/images/footer-logo-construction.webp"
             alt="XTRA Construction"
             width={540}
             height={100}
@@ -48,10 +48,19 @@ export function Footer() {
         <div className="shell flex flex-col items-center justify-between gap-4 py-7 text-center sm:flex-row sm:text-left">
           <p className="text-[14px] text-navy/60 lg:text-[16px]">© 2026 XTRA, Powered by WordPress</p>
 
-          <ul className="flex items-center gap-4 lg:gap-6">
+          {/* the reference reverses this row from 769px up; DOM order is what phones show */}
+          <ul className="flex items-center gap-4 min-[769px]:flex-row-reverse lg:gap-6">
             {FOOTER_LINKS.map((link, i) => (
-              <li key={link.label} className="flex items-center gap-4 lg:gap-6">
-                {i > 0 && <span aria-hidden="true" className="h-4 w-px bg-navy/10" />}
+              <li
+                key={link.label}
+                className="flex items-center gap-4 min-[769px]:flex-row-reverse lg:gap-6"
+              >
+                {i > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="h-[22px] w-px rotate-[20deg] bg-navy/[0.07] lg:h-[30px]"
+                  />
+                )}
                 <a
                   href={link.href}
                   className="text-[14px] text-navy/65 transition-colors duration-200 hover:text-gold lg:text-[16px]"

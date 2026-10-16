@@ -39,7 +39,7 @@ export function SectionHeading({
       </p>
 
       <h2
-        className={`relative z-[1] mt-3 text-[30px] font-bold leading-[1.25] sm:text-[36px] lg:text-[42px] ${
+        className={`relative z-[1] mt-3 text-[30px] font-bold leading-[1.25] sm:text-[36px] lg:mt-9 lg:text-[42px] ${
           tone === 'light' ? 'text-white' : 'text-[#111]'
         }`}
       >

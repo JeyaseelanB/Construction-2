@@ -123,7 +123,7 @@ export function Quote() {
                   <label className={LABEL} htmlFor="q-dept">
                     Departemant
                   </label>
-                  <select id="q-dept" name="menu-178" className={FIELD} defaultValue={DEPARTMENTS[0]}>
+                  <select id="q-dept" name="menu-178" className={`${FIELD} h-[54px]`} defaultValue={DEPARTMENTS[0]}>
                     {DEPARTMENTS.map((d) => (
                       <option key={d} value={d}>
                         {d}

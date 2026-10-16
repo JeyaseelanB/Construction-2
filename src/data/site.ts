@@ -61,11 +61,11 @@ export const HERO_SLIDE_ONE = {
   videoLabel: 'Watch video',
   videoTitle: 'Why choose us?',
   videoHref: 'https://www.youtube.com/watch?v=FyS_zcvmUr4',
-  image: '/images/man-model.png',
+  image: '/images/man-model.webp',
 }
 
 export const HERO_SLIDE_TWO = {
-  background: '/images/slide-2.jpg',
+  background: '/images/slide-2.webp',
   top: 'Committed to superior quality and results',
   bottom: "We'll get it done, like us there are none",
 }
@@ -73,17 +73,17 @@ export const HERO_SLIDE_TWO = {
 export const FEATURES = [
   {
     title: 'Building Engineering',
-    image: '/images/service-1.jpg',
+    image: '/images/service-1.webp',
     body: 'A Building Engineer is recognised as being expert in the use of technology for the design, construction, assessment and maintenance of the built environment.',
   },
   {
     title: 'Safety First',
-    image: '/images/service-2.jpg',
+    image: '/images/service-2.webp',
     body: 'Safety First explores the challenges at the heart of needlestick and sharps safety and highlights promising efforts to ensure patient and health care worker safety in hospitals.',
   },
   {
     title: 'Road Construction',
-    image: '/images/service-3.jpg',
+    image: '/images/service-3.webp',
     body: 'The construction of a new road whether from asphalt or concrete requires the production of an bonded pavement structure, beginning with a stable base.',
   },
 ]
@@ -123,42 +123,42 @@ export const PROJECTS = [
   {
     title: 'Riverview Green Building',
     cats: 'Building, Road Construction',
-    image: '/images/portfolio/personal_gift-1.jpg',
+    image: '/images/portfolio/personal_gift-1.webp',
   },
   {
     title: 'The Langham Hotel',
     cats: 'Building, Construction',
-    image: '/images/portfolio/tick_tock-1-1.jpg',
+    image: '/images/portfolio/tick_tock-1-1.webp',
   },
   {
     title: 'Villa Rustica Renovation',
     cats: 'Construction, Road Construction',
-    image: '/images/portfolio/portfolio9-1.jpg',
+    image: '/images/portfolio/portfolio7-1.webp',
   },
   {
     title: 'Land Rustica Renovation',
     cats: 'Building, Maintenance',
-    image: '/images/portfolio/portfolio10-1.jpg',
+    image: '/images/portfolio/portfolio10-1.webp',
   },
   {
     title: 'Kitchen And Living Room',
     cats: 'Architecture, Building',
-    image: '/images/portfolio/portfolio2-1.jpg',
+    image: '/images/portfolio/portfolio3-1.webp',
   },
   {
     title: 'House Under The Palms',
     cats: 'Construction, Road Construction',
-    image: '/images/portfolio/portfolio3-1.jpg',
+    image: '/images/portfolio/portfolio6-1.webp',
   },
   {
     title: 'Green House',
     cats: 'Construction, Road Construction',
-    image: '/images/portfolio/portfolio6-1.jpg',
+    image: '/images/portfolio/portfolio9-1.webp',
   },
   {
     title: 'Inside renovation',
     cats: 'Construction, Road Construction',
-    image: '/images/portfolio/portfolio7-1.jpg',
+    image: '/images/portfolio/portfolio2-1.webp',
   },
 ]
 
@@ -174,29 +174,29 @@ export const TESTIMONIALS = [
     quote:
       '"Great Experience!! Michael has made the whole process easy from the planning stage to the final plant going in. Steve & his crew did a great job. I felt like Lavish Gardens really listened to what I wanted, gave me ideas, and helped me decide how to make my backyard a place to relax and enjoy the view.',
     author: '- Richard Dowson',
-    avatar: '/images/team1.jpg',
+    avatar: '/images/team1.webp',
   },
   {
     quote:
       '“I just wanted to say thank you to all of you for being so fun to work with and being rock stars with the best attitudes EVER on this 16th floor build for SPS. It means a great deal to me that you all come to the table every week with smiles on your faces and ready to solve whatever issue.”',
     author: '- Lisa Jordan',
-    avatar: '/images/team2.jpg',
+    avatar: '/images/team2.webp',
   },
   {
-    quote:
-      '"Greiner has been a critical partner to us on the redevelopment of West End Center Office Park. The team of project managers, supervisors, and their support teams can’t be rivaled by any other contractor I have worked with over the past 15 years."',
+    // template literal so the reference's straight quotes survive verbatim
+    quote: `"Greiner has been a critical partner to us on the redevelopment of West End Center Office Park. The team of project managers, supervisors, and their support teams can't be rivaled by any other contractor I have worked with over the past 15 years."`,
     author: '- Michael Anderson',
-    avatar: '/images/team3.jpg',
+    avatar: '/images/team3.webp',
   },
 ]
 
 /* Order mirrors the reference layout, which is not the file numbering. */
 export const CLIENT_LOGOS = [
-  { src: '/images/logo-4.png', alt: 'Logo 4' },
-  { src: '/images/logo-5.png', alt: 'Logo 5' },
-  { src: '/images/logo-3.png', alt: 'Logo 3' },
-  { src: '/images/logo-1.png', alt: 'Logo 1' },
-  { src: '/images/logo-2.png', alt: 'Logo 2' },
+  { src: '/images/logo-4.webp', alt: 'Logo 4', w: 130, h: 80 },
+  { src: '/images/logo-5.webp', alt: 'Logo 5', w: 218, h: 70 },
+  { src: '/images/logo-3.webp', alt: 'Logo 3', w: 163, h: 79 },
+  { src: '/images/logo-1.webp', alt: 'Logo 1', w: 193, h: 80 },
+  { src: '/images/logo-2.webp', alt: 'Logo 2', w: 141, h: 80 },
 ]
 
 export const FOOTER_LINKS = [

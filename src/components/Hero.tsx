@@ -79,9 +79,9 @@ function SlideOne({ activeKey }: { activeKey: number }) {
             href={s.videoHref}
             target="_blank"
             rel="noopener noreferrer nofollow"
-            className="hero-in hero-d4 group mt-7 inline-flex items-center gap-4 lg:mt-[70px] lg:gap-[42px]"
+            className="hero-in hero-d4 group mt-7 inline-flex items-center gap-4 lg:ml-[6px] lg:mt-[88px] lg:gap-[44px]"
           >
-            <span className="grid h-[54px] w-[54px] shrink-0 place-items-center rounded-full bg-[#384043] text-white transition-all duration-300 group-hover:scale-105 group-hover:bg-gold group-hover:text-navy lg:h-[100px] lg:w-[100px]">
+            <span className="grid h-[54px] w-[54px] shrink-0 place-items-center rounded-full bg-[#384043] text-gold shadow-[0_0_0_4px_#e9eaec] transition-all duration-300 group-hover:scale-105 group-hover:bg-gold group-hover:text-navy sm:shadow-[0_0_0_6px_#e9eaec] lg:h-[90px] lg:w-[90px] lg:shadow-[0_0_0_10px_#e9eaec]">
               <PlayIcon className="ml-1 h-4 w-4 lg:h-6 lg:w-6" />
             </span>
             <span className="block leading-[32px]">
@@ -106,11 +106,11 @@ function SlideTwo({ activeKey }: { activeKey: number }) {
         style={{ backgroundImage: `url(${s.background})` }}
         aria-hidden="true"
       />
-      <div className="shell relative z-10 flex h-full flex-col items-center justify-center text-center">
-        <p className="hero-in hero-d1 max-w-[1060px] bg-navy px-6 py-5 font-body text-[19px] font-bold leading-tight text-gold sm:px-10 sm:py-7 sm:text-[32px] lg:px-[60px] lg:pb-[80px] lg:pt-10 lg:text-[52px]">
+      <div className="shell relative z-10 flex h-full flex-col items-center justify-center text-center lg:pt-[104px]">
+        <p className="hero-in hero-d1 max-w-[1060px] bg-navy px-6 py-5 font-body text-[19px] font-bold leading-tight text-gold sm:px-10 sm:py-7 sm:text-[32px] lg:max-w-none lg:px-[60px] lg:pb-[80px] lg:pt-10 lg:text-[44px] lg:leading-[44px] xl:text-[52px] xl:leading-[52px]">
           {s.top}
         </p>
-        <p className="hero-in hero-d2 -mt-4 max-w-[900px] bg-gold px-6 py-4 font-body text-[16px] font-bold leading-tight text-navy sm:px-10 sm:py-6 sm:text-[26px] lg:-mt-[70px] lg:px-[60px] lg:py-10 lg:text-[40px]">
+        <p className="hero-in hero-d2 -mt-4 max-w-[900px] bg-gold px-6 py-4 font-body text-[16px] font-bold leading-tight text-navy sm:px-10 sm:py-6 sm:text-[26px] lg:-mt-[36px] lg:px-[60px] lg:py-10 lg:text-[40px] lg:leading-[40px]">
           {s.bottom}
         </p>
       </div>
@@ -121,6 +121,7 @@ function SlideTwo({ activeKey }: { activeKey: number }) {
 export function Hero() {
   const [index, setIndex] = useState(0)
   const [tick, setTick] = useState(0)
+  const [paused, setPaused] = useState(false)
   const timer = useRef<number | undefined>(undefined)
 
   const go = useCallback((next: number) => {
@@ -129,17 +130,21 @@ export function Hero() {
   }, [])
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) return
+    if (paused) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     timer.current = window.setTimeout(() => go(index + 1), AUTOPLAY_MS)
     return () => window.clearTimeout(timer.current)
-  }, [index, go])
+  }, [index, paused, go])
 
   return (
     <section
       id="home"
       aria-label="Highlights"
       aria-roledescription="carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
       className="relative h-[540px] overflow-hidden bg-white sm:h-[640px] lg:h-[1000px]"
     >
       {[0, 1].map((i) => (

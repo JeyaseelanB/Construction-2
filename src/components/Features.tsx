@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { FEATURES } from '../data/site'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import { ChevronUp } from './Icons'
 import { SectionHeading } from './SectionHeading'
 
 function FeatureCard({ item, index }: { item: (typeof FEATURES)[number]; index: number }) {
   const [flipped, setFlipped] = useState(false)
+  // Where hover exists the back face flips into view on focus, so its link must stay
+  // tabbable. Where it does not, the "View details" button is the only way in — keep
+  // the hidden face out of the tab order until it is actually showing.
+  const canHover = useMediaQuery('(hover: hover)')
 
   return (
     <div
@@ -13,7 +18,7 @@ function FeatureCard({ item, index }: { item: (typeof FEATURES)[number]; index: 
       onMouseLeave={() => setFlipped(false)}
     >
       <div
-        className={`relative min-h-[420px] w-full transition-transform duration-700 [transform-style:preserve-3d] sm:min-h-[500px] group-hover/card:[transform:rotateY(180deg)] ${
+        className={`relative min-h-[420px] w-full transition-transform duration-700 [transform-style:preserve-3d] sm:min-h-[500px] lg:min-h-[520px] group-hover/card:[transform:rotateY(180deg)] lg:group-focus-within/card:[transform:rotateY(180deg)] ${
           flipped ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
@@ -22,11 +27,9 @@ function FeatureCard({ item, index }: { item: (typeof FEATURES)[number]; index: 
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${item.image})` }}
-            role="img"
-            aria-label={item.title}
           />
           <div className="relative flex items-center justify-between gap-4 bg-navy/70 px-5 py-5 sm:px-[50px] sm:py-[34px]">
-            <h3 className="font-display text-[18px] font-medium text-white sm:text-[22px] lg:text-[24px]">
+            <h3 className="font-display text-[18px] font-medium text-white sm:text-[22px] lg:text-[24px] lg:leading-[42px]">
               {item.title}
             </h3>
             <ChevronUp className="h-5 w-5 shrink-0 text-white" />
@@ -34,10 +37,13 @@ function FeatureCard({ item, index }: { item: (typeof FEATURES)[number]; index: 
         </div>
 
         {/* ---------- back ---------- */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gold/95 px-6 py-12 text-center shadow-[0_10px_50px_rgba(36,51,68,0.2)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:px-[25px] sm:py-20">
-          <h3 className="mb-8 font-display text-[20px] font-medium text-navy sm:mb-[50px] sm:text-[24px]">
+        <div
+          inert={!canHover && !flipped}
+          className="absolute inset-0 flex flex-col items-center justify-center bg-gold/95 px-6 py-12 text-center shadow-[0_10px_50px_rgba(36,51,68,0.2)] [backface-visibility:hidden] [transform:rotateY(180deg)] sm:px-[25px] sm:py-20"
+        >
+          <p className="mb-8 font-display text-[20px] font-medium text-navy sm:mb-[50px] sm:text-[24px]">
             {item.title}
-          </h3>
+          </p>
           <p className="text-[15px] leading-[1.6] text-navy sm:text-[18px]">{item.body}</p>
           <a
             href="#services"
@@ -63,19 +69,22 @@ function FeatureCard({ item, index }: { item: (typeof FEATURES)[number]; index: 
 
 export function Features() {
   return (
-    <section
-      id="features"
-      className="relative bg-navy bg-cover bg-center py-20 lg:py-[110px]"
-      style={{ backgroundImage: 'url(/images/row-bg.jpg)' }}
-    >
+    <section id="features" className="relative py-20 lg:py-[110px]">
+      {/* the band stops short of the section bottom so the cards overhang onto the white */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 top-0 bg-navy bg-cover bg-center lg:bottom-[191px]"
+        style={{ backgroundImage: 'url(/images/row-bg.webp)' }}
+      />
+
       <div className="shell relative">
         <img
-          src="/images/safety-icon.png"
+          src="/images/safety-icon.webp"
           alt=""
           aria-hidden="true"
           width={80}
           height={67}
-          className="fx-reveal mx-auto mb-8 h-auto w-[62px] lg:w-[80px]"
+          className="fx-reveal mx-auto mb-8 h-auto w-[62px] lg:mb-14 lg:w-[80px]"
         />
 
         <SectionHeading
@@ -86,7 +95,7 @@ export function Features() {
           className="fx-reveal"
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-[30px]">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-[110px] lg:grid-cols-3 lg:gap-10">
           {FEATURES.map((item, i) => (
             <FeatureCard key={item.title} item={item} index={i} />
           ))}

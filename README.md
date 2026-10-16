@@ -33,18 +33,19 @@ Every section of the reference page is implemented, top to bottom:
 
 ### Interactions implemented
 
-- **Hero slider** — autoplays every 7 s, pausable via the dot controls, re-runs its
-  entrance choreography on each slide change.
+- **Hero slider** — autoplays every 7 s, pauses on hover and keyboard focus, has dot
+  controls to jump between slides, and re-runs its entrance choreography on each change.
 - **Header** — transparent and layered over the hero at the top of the page; a white
   sticky bar slides down past 240 px of scroll. The active nav item is tracked with an
   `IntersectionObserver` and underlined in gold.
 - **Dropdown menus** — two levels deep on desktop (hover), accordion-style on mobile (tap).
-- **Search** — full-screen overlay, autofocuses the input, closes on <kbd>Esc</kbd>,
-  locks body scroll, lists the reference's "trending searches".
+- **Search** — dropdown panel anchored to the header icon (as on the reference),
+  autofocuses the input, closes on <kbd>Esc</kbd>, outside click or scroll, and returns
+  focus to the trigger. The "trending searches" chips fill the input.
 - **Off-canvas mobile menu** — slides in from the right, closes on backdrop click,
   <kbd>Esc</kbd>, or selecting a link.
-- **Feature cards** — 3D flip on hover, with an explicit "View details" toggle on touch
-  devices where hover does not exist.
+- **Feature cards** — 3D flip on hover or keyboard focus, with an explicit "View details"
+  toggle below 1024 px, where hover is not available.
 - **Portfolio tiles** — image zoom plus a navy overlay with icon, title and categories.
 - **Quote form** — real HTML5 validation, submitting state, polite live-region status.
 - **Testimonials** — autoplay (pauses on hover/focus), dot navigation, touch swipe,
@@ -60,7 +61,7 @@ Every section of the reference page is implemented, top to bottom:
 | Layer      | Choice                                                                   |
 | ---------- | ------------------------------------------------------------------------ |
 | Framework  | React 19                                                                 |
-| Language   | TypeScript 6 (strict)                                                    |
+| Language   | TypeScript 6                                                             |
 | Build tool | Vite 8                                                                   |
 | Styling    | Tailwind CSS 4 (`@tailwindcss/vite`), design tokens in `src/index.css`   |
 | Fonts      | Poppins (headings) + Roboto (body), via Google Fonts                     |
@@ -73,17 +74,18 @@ slider, carousel, dropdowns, overlays and reveal animations are all written for 
 ### Project structure
 
 ```
-public/images/           Theme imagery copied from the reference demo
+public/images/           Theme imagery from the reference demo, converted to WebP
 src/
   components/            One file per section, plus Icons / SectionHeading / BackToTop …
-  data/site.ts           All page copy, navigation and image references in one place
+  data/site.ts           Navigation, cards, projects, testimonials and footer data
   hooks/                 useReveal (scroll animations), useLockBodyScroll (overlays)
   index.css              Tailwind import, design tokens, base styles, keyframes
   App.tsx                Section composition
 ```
 
-Content lives entirely in `src/data/site.ts`, so copy and imagery can be changed
-without touching component code.
+Page data — navigation, feature/service cards, projects, testimonials and footer copy —
+lives in `src/data/site.ts`. Section headings and static labels stay with their components,
+because several carry presentation markers (a `|` line break, a responsive `<br>`).
 
 ---
 
@@ -275,9 +277,11 @@ Google Fonts (Poppins, Roboto) are the only external runtime request.
 - **Search is presentational.** There is no index to query, so submitting the overlay
   simply closes it. Trending search terms are static, as on the reference.
 - **Secondary pages do not exist** — links resolve to in-page anchors (see *Assumptions*).
-- **Images are served at their original sizes**; no responsive `srcset` or modern formats
-  (AVIF/WebP) are generated. `loading="lazy"` is applied below the fold. Converting the
-  larger JPEGs would meaningfully improve Lighthouse scores.
+- **Images are served at a single size.** The theme's JPEG/PNG assets were converted to
+  WebP (3.3 MB → 1.2 MB; the three service icons stayed PNG, where WebP was larger), and
+  `loading="lazy"` is applied below the fold, but no responsive `srcset` or AVIF variants
+  are generated, so large viewports download the same file as small ones. WebP requires a
+  2020-or-later browser, which matches the support target below.
 - **No automated tests.** Layout and interaction were verified manually and with scripted
   headless-browser checks at 1440 / 768 / 390 px, but no test suite is committed.
 - **Browser support** targets current evergreen browsers. The layout relies on CSS

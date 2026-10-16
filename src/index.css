@@ -46,11 +46,15 @@
     @apply bg-gold text-navy;
   }
 
-  /* Visible focus for keyboard users only */
-  :focus-visible {
-    outline: 2px solid var(--color-gold);
-    outline-offset: 3px;
-  }
+}
+
+/* Unlayered on purpose: it must outrank Tailwind's utilities layer, which would
+   otherwise win on elements carrying shadow-* / ring-* classes. Two tones because
+   no single colour clears 3:1 against white, gold and navy at once. */
+:focus-visible {
+  outline: 2px solid var(--color-navy-900);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 @layer components {
@@ -65,6 +69,13 @@
     top: 50%;
     translate: 0 -50%;
     z-index: 0;
+  }
+
+  /* the reference drops the watermark below 481px rather than letting it clip */
+  @media (max-width: 480px) {
+    .watermark {
+      display: none;
+    }
   }
 }
 

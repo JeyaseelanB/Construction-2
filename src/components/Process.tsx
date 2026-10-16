@@ -24,10 +24,10 @@ export function Process() {
             <div className="fx-reveal relative mt-12">
               <span
                 aria-hidden="true"
-                className="absolute -bottom-10 left-0 right-[10%] top-[30%] bg-gold lg:-left-[calc((100vw-100%)/2)]"
+                className="absolute bottom-[-30px] left-[-30px] right-[70px] top-[70px] bg-gold lg:bottom-[-50px] lg:-left-[calc((100vw-100%)/2)] lg:right-[50px] lg:top-[50px]"
               />
               <img
-                src="/images/process.jpg"
+                src="/images/process.webp"
                 alt="Workers tying rebar on site"
                 width={650}
                 height={370}
@@ -41,20 +41,20 @@ export function Process() {
           <div className="relative py-14 lg:py-24">
             <span
               aria-hidden="true"
-              className="absolute inset-y-0 left-[60px] right-0 bg-navy lg:-right-[calc((100vw-100%)/2)] lg:left-0"
+              className="absolute inset-y-0 -left-[50vw] right-[-50vw] bg-navy sm:left-0 lg:left-0 lg:-right-[calc((100vw-100%)/2)]"
             />
 
             <ol className="relative space-y-12 lg:space-y-16">
               {PROCESS_STEPS.map((step, i) => (
                 <li
                   key={step.number}
-                  className="fx-reveal flex items-center gap-6 lg:-ml-[68px] lg:gap-10"
+                  className="fx-reveal flex flex-col items-center gap-4 text-center lg:-ml-[68px] lg:flex-row lg:items-center lg:gap-10 lg:text-left"
                   data-reveal-delay={i * 150}
                 >
                   <span className="grid h-[92px] w-[92px] shrink-0 place-items-center bg-gold font-display text-[30px] font-light text-white shadow-[0_10px_40px_rgba(36,51,68,0.2)] lg:h-[135px] lg:w-[135px] lg:text-[44px]">
                     {step.number}
                   </span>
-                  <div className="pr-5 lg:pr-10">
+                  <div className="px-5 lg:pl-0 lg:pr-10">
                     <h3 className="font-display text-[20px] font-bold text-white lg:text-[28px]">
                       {step.title}
                     </h3>

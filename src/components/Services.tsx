@@ -8,11 +8,6 @@ function ServiceCard({ item, index }: { item: (typeof SERVICES)[number]; index: 
       data-reveal-delay={index * 130}
     >
       <div className="relative mb-6 grid h-[125px] w-[180px] max-w-full place-items-center">
-        <span
-          aria-hidden="true"
-          className="absolute inset-x-6 bottom-2 top-2 bg-gold/25 transition-transform duration-500 group-hover:scale-110"
-          style={{ clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)' }}
-        />
         <img
           src={item.icon}
           alt=""
@@ -20,7 +15,7 @@ function ServiceCard({ item, index }: { item: (typeof SERVICES)[number]; index: 
           width={180}
           height={125}
           loading="lazy"
-          className="relative h-auto w-[110px] transition-transform duration-500 group-hover:-translate-y-1.5 sm:w-[130px]"
+          className="h-auto w-full max-w-full transition-transform duration-500 group-hover:-translate-y-1.5"
         />
       </div>
 
@@ -42,7 +37,7 @@ function ServiceCard({ item, index }: { item: (typeof SERVICES)[number]; index: 
 export function Services({ children }: { children?: React.ReactNode }) {
   return (
     <section id="services" className="relative">
-      <div className="shell pb-[160px] pt-16 lg:pb-[200px] lg:pt-[110px]">
+      <div className="shell pb-[160px] pt-16 lg:pb-[260px] lg:pt-[110px]">
         <SectionHeading
           watermark="SERVICES"
           eyebrow="WHAT WE CAN DO FOR YOU"

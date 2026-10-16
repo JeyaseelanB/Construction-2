@@ -4,7 +4,7 @@ export function CtaBanner() {
       <div className="fx-reveal flex flex-col items-center gap-8 text-center lg:flex-row lg:justify-between lg:gap-10 lg:text-left">
         <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-start lg:gap-7">
           <img
-            src="/images/safety-icon.png"
+            src="/images/safety-icon.webp"
             alt=""
             aria-hidden="true"
             width={80}

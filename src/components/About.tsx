@@ -8,13 +8,13 @@ export function About() {
       <div className="shell">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ---------- image, bleeding to the left viewport edge on desktop ---------- */}
-          <div className="fx-reveal relative order-2 lg:order-1 lg:-ml-[calc((100vw-100%)/2)]">
+          <div className="fx-reveal relative order-2 lg:order-1 lg:-ml-[calc((100vw-min(100vw,1360px))/2+2rem)]">
             <span
               aria-hidden="true"
-              className="absolute -bottom-5 left-0 right-[14%] top-[-60px] bg-gold lg:right-[16%] lg:top-[-85px]"
+              className="absolute -bottom-5 left-0 right-[14%] top-0 bg-gold lg:bottom-[-80px] lg:right-[16%] lg:top-[-80px]"
             />
             <img
-              src="/images/about-company.jpg"
+              src="/images/about-company.webp"
               alt="Two engineers reviewing plans on a construction site"
               width={800}
               height={765}
@@ -24,7 +24,7 @@ export function About() {
           </div>
 
           {/* ---------- copy ---------- */}
-          <div className="order-1 lg:order-2">
+          <div className="relative z-[1] order-1 lg:order-2">
             <SectionHeading
               watermark="ABOUT"
               eyebrow="ABOUT OUR COMPANY"
